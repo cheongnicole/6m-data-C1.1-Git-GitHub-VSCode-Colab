@@ -18,6 +18,7 @@ Git is the tool that tracks changes to your files.
 
 - **Mac:** Open Terminal, type `git --version`. If Git is not installed, macOS will prompt you to install it automatically.
 - **Windows:** Download from [git-scm.com/downloads](https://git-scm.com/downloads). Run the installer and accept all the default options.
+  - **Windows + WSL users:** if you set up WSL (Windows Subsystem for Linux) in [Lesson 1.0 (Welcome & Onboarding)](../6m-data-1.0-Welcome-Onboarding/), open VS Code and click the blue "Open a Remote Window" button at the bottom-left → **Connect to WSL**. This gives you a small Linux workspace inside Windows, matching what we'll use in class.
 
 To confirm Git is installed, open a terminal and type:
 ```

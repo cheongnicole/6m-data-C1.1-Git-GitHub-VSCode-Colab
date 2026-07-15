@@ -113,6 +113,31 @@ Problem: "Your branch is behind 'origin/main'"
 
 ---
 
+```
+Problem: A file shows "Merge Conflict" after pulling, or you see
+         <<<<<<<  =======  >>>>>>> markers inside a file
+    ↓
+→ The same lines were changed both locally and on GitHub — Git can't
+  guess which version you want, so it's asking you to decide.
+  This is NOT an error and your work is not lost.
+  Solution:
+    1. Open the file. Find the conflict markers:
+         <<<<<<< HEAD           (your local version)
+         ...
+         =======
+         ...
+         >>>>>>> origin/main    (the GitHub version)
+    2. Decide what the final text should be — keep one side, the other,
+       or a combination. In VS Code you can click the
+       "Accept Current / Accept Incoming / Accept Both" buttons shown
+       above the conflict, or edit the text by hand.
+    3. Delete the marker lines themselves (<<<<<<<, =======, >>>>>>>).
+    4. Save the file, then Stage → Commit (e.g. "Resolve conflict in
+       notes.txt") → Push as usual.
+```
+
+---
+
 ## SECTION 3: VS Code Source Control
 
 ```
@@ -165,6 +190,7 @@ Problem: "Sync Changes" is greyed out or nothing happens
 | `Could not resolve host: github.com` | No internet connection | Check your Wi-Fi and try again |
 | `Your branch is ahead of 'origin/main'` | Local commits not pushed yet | Run `git push` |
 | `Your branch is behind 'origin/main'` | GitHub has newer changes | Run `git pull` |
+| `CONFLICT (content): Merge conflict in <file>` | Same lines changed both locally and on GitHub | Edit the file to resolve `<<<<<<<`/`=======`/`>>>>>>>` markers, then Stage → Commit → Push |
 
 ---
 

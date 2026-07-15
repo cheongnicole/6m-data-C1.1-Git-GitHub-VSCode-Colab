@@ -29,9 +29,9 @@ By the end of this session, you will be able to:
 | **0:00 – 0:15** | Module 1: What is Git & GitHub? | Concepts (15 min) |
 | **0:15 – 0:30** | Module 2: Local vs. Remote | Concepts + Demo (15 min) |
 | **0:30 – 0:55** | Exercise A: Your First Repository & Commit | Hands-on (25 min) |
-| **0:55 – 1:20** | Exercise B: Make Changes & Stay in Sync | Hands-on (25 min) |
-| **1:20 – 1:40** | Exercise C: Team Collaboration (Group) | Hands-on (20 min) |
-| **1:40 – 1:50** | Module 3: What is Colab? + Wrap Up | Concepts (10 min) |
+| **0:55 – 1:25** | Exercise B: Make Changes, Stay in Sync & Resolve a Conflict | Hands-on (30 min) |
+| **1:25 – 1:40** | Exercise C: Pair Collaboration | Hands-on (15 min) |
+| **1:40 – 1:50** | Module 3: What is Colab? + Self-Check + Wrap Up | Concepts (10 min) |
 
 ---
 
@@ -151,7 +151,7 @@ Now the project is on your computer. You can edit it locally, then push changes 
 1. On your new GitHub repository page, click the green **Code** button.
 2. Make sure **HTTPS** is selected. Copy the URL (it looks like `https://github.com/yourname/my-learning-journal.git`).
 3. Open **VS Code**.
-   - *Windows users:* Click the blue "Open a Remote Window" button at the bottom-left. WSL is a small Linux workspace inside Windows — you set it up in [Lesson 1.0 (Welcome & Onboarding)](../6m-data-1.0-Welcome-Onboarding/); if the blue button offers **Connect to WSL**, click it.
+   - *Windows users:* if you set up WSL in pre-class, click **Connect to WSL** on the blue remote-window button (bottom-left) first.
 4. Press `Ctrl+Shift+P` (Windows) or `Cmd+Shift+P` (Mac) to open the Command Palette.
 5. Type **Git: Clone** and select it.
 6. Paste the URL you copied.
@@ -185,7 +185,7 @@ Now the project is on your computer. You can edit it locally, then push changes 
 
 ---
 
-## 💻 Exercise B: Make Changes & Stay in Sync (25 mins)
+## 💻 Exercise B: Make Changes, Stay in Sync & Resolve a Conflict (30 mins)
 
 *Goal: Edit your file, commit the change, and practice pulling updates from GitHub.*
 
@@ -228,40 +228,53 @@ Sometimes a colleague (or your future self on another computer) will make a chan
 
 > **Always Pull before you Push.** When you work with others (or across multiple computers), always pull the latest changes before making your own. This avoids conflicts.
 
+### Part 4 — Instructor Demo: When Pull Hits a Conflict (5 mins)
+
+Sometimes the same line gets changed in two places before you can pull. Git can't guess which version you want — this is a **merge conflict**. Watch the instructor demo this on the class repo:
+
+1. Edit the first line of `notes.txt` **on GitHub** (pencil icon → change the text → commit).
+2. Edit the first line of `notes.txt` **in VS Code**, locally, to something different. Stage & commit it (don't push yet).
+3. Click **Sync Changes** (this pulls first) — VS Code reports a conflict, and `notes.txt` now shows conflict markers:
+   ```
+   <<<<<<< HEAD
+   your local version of the line
+   =======
+   the version from GitHub
+   >>>>>>> origin/main
+   ```
+4. Delete the version you don't want, and delete the `<<<<<<<`, `=======`, `>>>>>>>` marker lines — or click the **Accept Current/Incoming/Both** buttons VS Code shows above the conflict.
+5. Save, **Stage**, **Commit** (message like `Resolve conflict in notes.txt`), then **Push**.
+
+> 💡 **A conflict isn't an error — it's Git asking you to decide.** Your work is never lost; it's sitting right there in the markers, waiting for you to choose. See `git_troubleshooting_decision_tree.md` for a written walkthrough of this if you hit one on your own later.
+
 ---
 
-## 👥 Exercise C: Team Collaboration (Group Exercise)
+## 👥 Exercise C: Pair Collaboration (15 mins)
 
-*Goal: Practice the real-world collaboration workflow — owner creates repo, invites collaborators, collaborators submit PRs, owner reviews and merges.*
+*Goal: Practice collaborating with a partner on the same repository, without branches — just the Pull → Edit → Stage → Commit → Push loop you already know.*
 
-Form groups of 3–4. One person is the **Repo Owner**, the rest are **Collaborators**.
+Pair up with one classmate. One of you is the **Repo Owner**, the other is the **Collaborator**.
 
-### Step 1 — Owner: Create the Repo
+### Step 1 — Owner: Create the Repo & Add Collaborator
 
-1. Owner creates a **new public repository** on GitHub (e.g. `team-practice-repo`), with a README.
-2. Go to **Settings** → **Collaborators** → **Add people** → invite each teammate by GitHub username or email.
+1. Owner creates a **new public repository** on GitHub (e.g. `pair-practice-repo`), with a README.
+2. Go to **Settings** → **Collaborators** → **Add people** → invite your partner by GitHub username or email.
 
-### Step 2 — Collaborators: Accept & Clone
+### Step 2 — Collaborator: Accept & Clone
 
-1. Each collaborator accepts the invite (check email or GitHub notifications).
+1. Collaborator accepts the invite (check email or GitHub notifications).
 2. Clone the repo in VS Code (`Ctrl+Shift+P` → **Git: Clone**).
 
-### Step 3 — Collaborators: Make a Branch & Open a PR
+### Step 3 — Both: Pull, Edit, Push (take turns)
 
-1. Create a new branch (e.g. `add-yourname-notes`).
-2. Add or edit a file (e.g. add a line with your name to `README.md`).
-3. Stage → Commit → Push the branch.
-4. On GitHub, open a **Pull Request** from your branch into `main`.
+1. Both of you **Pull** first to make sure you're starting from the latest version.
+2. Each person edits a **different file** (e.g. Owner edits `notes.txt`, Collaborator creates `partner-notes.txt`) so you don't collide.
+3. Stage → Commit → Push your change.
+4. Before your next push, always **Pull** first — practice the Golden Rule from Exercise B.
 
-### Step 4 — Owner: Review & Merge
+✅ Check GitHub together — you should both see each other's commits in the repo's history.
 
-1. Owner opens each **Pull Request** on GitHub.
-2. Check the **Files changed** tab — review quality (clear commit message, no broken content, follows instructions).
-3. Leave a comment if changes are needed; otherwise click **Merge pull request**.
-
-✅ Repeat until every collaborator's PR is merged. The `main` branch should now contain everyone's contributions.
-
-> 💡 This mirrors real teamwork: collaborators never push straight to `main` — they propose changes via PR, and the owner (or a reviewer) gate-keeps quality before merging.
+> 💡 Ready for more? `assignment.md` has an optional **Exercise C2** where you'll add branches and Pull Requests on top of this same workflow.
 
 ---
 
@@ -298,6 +311,19 @@ Your notebook (`.ipynb` file) will appear in your GitHub repository — just lik
 4. Run it with **Shift + Enter**
 5. Go to **File** → **Save a copy in GitHub** → select `my-learning-journal` → write a commit message → click **OK**
 6. Refresh your GitHub repository — the `.ipynb` file should be there!
+
+---
+
+## ✅ Can You Do This? (Self-Check)
+
+Before you leave, make sure you can answer YES to all of these:
+
+- [ ] I can explain Git and GitHub to a friend in one sentence each
+- [ ] I can explain the difference between "local" and "remote"
+- [ ] I can create a repo on GitHub, clone it, and open it in VS Code
+- [ ] I can stage a change, write a commit message, and push to GitHub
+- [ ] I can pull the latest changes from GitHub to my computer
+- [ ] I know what a merge conflict looks like and roughly how to resolve one
 
 ---
 
