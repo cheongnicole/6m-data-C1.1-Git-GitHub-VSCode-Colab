@@ -73,6 +73,7 @@ You use Git *locally* (on your computer), and GitHub *remotely* (in the cloud).
 | Term | Plain English |
 |------|--------------|
 | **Repository (Repo)** | A project folder that Git is tracking |
+| **Fork** | Making your own copy of someone else's GitHub repo under your account, so you can change it without touching the original |
 | **Clone** | Making your own full copy of a GitHub project onto your computer, like downloading a shared Google Doc to edit offline |
 | **Branch** | A safe side-copy of your project to try changes without touching the main version, like "Save As" a draft before editing the original |
 | **Stage** | Marking changed files as "ready to include" in your next commit |
@@ -122,16 +123,37 @@ Your change passes through **three zones** on your computer — Working Files �
 
 > ⚠️ **About the "Sync Changes" button:** VS Code bundles **Pull then Push into one click** called *Sync Changes*. Handy, but remember they're still two separate directions — **Push** sends your work up, **Pull** brings others' work down. The cheatsheet shows them as separate `git push` / `git pull` so you keep the two directions clear in your head.
 
-### Demo: Cloning a Repository
+### Fork, then Clone: Getting Someone Else's Repo
 
-*The instructor will demonstrate cloning this repo to show how a remote repository becomes a local one.*
+Sometimes the repo you want to work on isn't yours — it belongs to another person or an organization. You can't push directly to a repo you don't own. The fix is a **two-step move**:
 
-1. Go to a GitHub repository page
-2. Click the green **Code** button → copy the HTTPS URL
-3. Open VS Code → `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) → type **Git: Clone**
-4. Paste the URL → choose a folder on your computer → click **Open**
+1. **Fork** — make your *own copy* of the repo on **GitHub** (remote → remote). This copy lives under your GitHub account, and you *can* push to it.
+2. **Clone** — download **your fork** to your computer (remote → local), so you can edit it in VS Code.
 
-Now the project is on your computer. You can edit it locally, then push changes back to GitHub.
+```
+Original repo (someone else's)      Your fork (yours, on GitHub)      Your laptop
+┌──────────────────────────┐  Fork  ┌────────────────────────┐  Clone  ┌──────────────┐
+│  github.com/them/project │ ─────► │ github.com/you/project │ ──────► │  VS Code     │
+└──────────────────────────┘        └────────────────────────┘         └──────────────┘
+```
+
+> **Analogy:** Forking is like photocopying a library book so you can scribble notes on *your* copy — the original stays untouched. Cloning is then taking that photocopy home to work on it.
+
+**Step 1 — Fork on GitHub:**
+
+1. Go to the original repository page on GitHub
+2. Click the **Fork** button (top-right)
+3. Confirm — GitHub creates a copy at `github.com/YOUR-USERNAME/project-name`
+
+**Step 2 — Clone your fork to your computer:**
+
+1. On **your fork's** page, click the green **Code** button → copy the HTTPS URL
+2. Open VS Code → `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) → type **Git: Clone**
+3. Paste the URL → choose a folder on your computer → click **Open**
+
+Now your fork is on your computer. You can edit it locally, then push changes back to *your* fork on GitHub.
+
+> 💡 **Fork vs. Clone — the difference:** *Fork* copies a repo from one GitHub account to yours (stays in the cloud). *Clone* copies a GitHub repo down to your laptop. If a repo is already yours, you can skip the fork and clone it directly.
 
 ---
 
